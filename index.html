@@ -19,13 +19,18 @@
     if (isFB && isIOS) {
       document.getElementById("content").innerHTML = `
         <h2>QPay төлбөр төлөх</h2>
-        <p style="color:#555;">Доод баруун ··· дарж "Open in Safari/Chrome" сонгоно уу</p>
+        <p style="color:#555;">Safari browser дээр нээхийн тулд:</p>
+        <ol style="text-align:left; display:inline-block; line-height:2;">
+          <li>Доод талын <b>···</b> дарна</li>
+          <li>Safari эсвэл Chrome нээнэ</li>
+          <li>QPay автоматаар нээгдэнэ</li>
+        </ol>
         <br>
         <a href="${deeplink}"
            style="display:inline-block; background:#0066CC; color:white; 
                   padding:14px 30px; border-radius:10px; text-decoration:none; 
                   font-size:16px; margin-top:10px;">
-          🔗 Гадна browser-т нээх
+          🙏 Баярлалаа
         </a>`;
     } else {
       document.getElementById("content").innerHTML = `
