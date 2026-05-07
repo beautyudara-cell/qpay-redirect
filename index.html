@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QPay төлбөр</title>
+</head>
+<body>
+  <script>
+    var url = "https://s.qpay.mn/sQB2TNAAXv";
+    var ua = navigator.userAgent || navigator.vendor;
+    var isFB = (ua.indexOf("FBAN") > -1) || 
+               (ua.indexOf("FBAV") > -1) || 
+               (ua.indexOf("FB_IAB") > -1);
+    
+    if (isFB) {
+      document.body.innerHTML = `
+        <div style="font-family:sans-serif; text-align:center; padding:40px;">
+          <h2>QPay төлбөр төлөх</h2>
+          <p>Доорх товчийг дарж төлбөр төлнө үү:</p>
+          <a href="${url}" 
+             style="display:inline-block; background:#0066CC; color:white; 
+                    padding:15px 30px; border-radius:8px; text-decoration:none; 
+                    font-size:18px;">
+            💳 QPay нээх
+          </a>
+          <br><br>
+          <small style="color:#888">Хэрэв нээгдэхгүй бол Chrome/Safari ашиглана уу</small>
+        </div>`;
+    } else {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
