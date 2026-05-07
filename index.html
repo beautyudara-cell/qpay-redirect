@@ -6,29 +6,61 @@
   <title>QPay төлбөр</title>
 </head>
 <body>
+  <div id="content" style="font-family:sans-serif; text-align:center; padding:40px;">
+    <h2>QPay төлбөр төлөх</h2>
+    <p>Уншиж байна...</p>
+  </div>
+
   <script>
-    var url = "https://s.qpay.mn/sQB2TNAAXv";
-    var ua = navigator.userAgent || navigator.vendor;
-    var isFB = (ua.indexOf("FBAN") > -1) || 
-               (ua.indexOf("FBAV") > -1) || 
-               (ua.indexOf("FB_IAB") > -1);
-    
-    if (isFB) {
-      document.body.innerHTML = `
-        <div style="font-family:sans-serif; text-align:center; padding:40px;">
-          <h2>QPay төлбөр төлөх</h2>
-          <p>Доорх товчийг дарж төлбөр төлнө үү:</p>
-          <a href="${url}" 
-             style="display:inline-block; background:#0066CC; color:white; 
-                    padding:15px 30px; border-radius:8px; text-decoration:none; 
-                    font-size:18px;">
-            💳 QPay нээх
-          </a>
-          <br><br>
-          <small style="color:#888">Хэрэв нээгдэхгүй бол Chrome/Safari ашиглана уу</small>
-        </div>`;
+    var deeplink = "https://s.qpay.mn/sQB2TNAAXv";
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var isFB = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
+
+    function showButton() {
+      document.getElementById("content").innerHTML = `
+        <h2 style="margin-bottom:10px;">QPay төлбөр төлөх</h2>
+        <p style="color:#555; margin-bottom:24px;">Доорх товчийг дарж төлбөр төлнө үү:</p>
+        <a href="${deeplink}" 
+           target="_blank"
+           rel="noopener noreferrer"
+           style="display:inline-block; background:#0066CC; color:white; 
+                  padding:16px 36px; border-radius:10px; text-decoration:none; 
+                  font-size:18px; font-weight:bold;">
+          💳 QPay нээх
+        </a>
+        <br><br>
+        <p style="color:#aaa; font-size:13px;">
+          Дарсны дараа QPay апп нээгдэнэ.<br>
+          Хэрэв нээгдэхгүй бол <b>Safari</b> browser ашиглана уу.
+        </p>
+        <br>
+        <a href="${deeplink}" 
+           style="color:#0066CC; font-size:14px;">
+          ↗ Safari-д нээх
+        </a>`;
+    }
+
+    // iOS Messenger дотор байвал заавар харуулна
+    if (isFB && isIOS) {
+      document.getElementById("content").innerHTML = `
+        <h2>QPay төлбөр төлөх</h2>
+        <p style="color:#555;">Safari browser дээр нээхийн тулд:</p>
+        <ol style="text-align:left; display:inline-block; line-height:2;">
+          <li>Доод талын <b>Share</b> товч (□↑) дарна</li>
+          <li><b>"Open in Safari"</b> сонгоно</li>
+          <li>Safari-д QPay автоматаар нээгдэнэ</li>
+        </ol>
+        <br>
+        <a href="${deeplink}"
+           style="display:inline-block; background:#0066CC; color:white; 
+                  padding:14px 30px; border-radius:10px; text-decoration:none; 
+                  font-size:16px; margin-top:10px;">
+          💳 Эхлээд энд дарж үзнэ үү
+        </a>`;
     } else {
-      window.location.href = url;
+      showButton();
     }
   </script>
 </body>
